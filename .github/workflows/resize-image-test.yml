@@ -1,4 +1,4 @@
-name: Create resized image test
+name: Create landscape image test
 on:
   push:
     branches: [main]
@@ -10,7 +10,7 @@ on:
 permissions:
   contents: write
 jobs:
-  resize:
+  landscape-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,9 +19,9 @@ jobs:
           python-version: "3.12"
       - run: pip install Pillow
       - run: python scripts/resize_image_test.py
-      - name: Commit resized test image
+      - name: Commit landscape test image
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add images/characters/kuro/kuro_happy_neon_cafe_resized_test.png
-          git diff --cached --quiet || (git commit -m "Add resized Kuro image test" && git push)
+          git add images/characters/kuro/kuro_happy_neon_cafe_landscape_test.png
+          git diff --cached --quiet || (git commit -m "Add landscape Kuro image test" && git push)
